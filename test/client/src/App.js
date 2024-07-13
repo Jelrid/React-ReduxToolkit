@@ -1,22 +1,17 @@
 import React from 'react';
 import {Counter} from './features/counter/Counter';
-// 👇️ import Routes instead of Switch 👇️
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { Home } from './features/Home/Home';
 
 export default function App() {
   return (
     <Router>
-      <div>
         <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/" element={<Counter />} />
+          <Route path="/counter" element={<Counter />} />
+          <Route path="/" element={<Home />} />
         </Routes>
-      </div>
     </Router>
   );
 }
 
 
-function About() {
-  return <h2>About</h2>;
-}
