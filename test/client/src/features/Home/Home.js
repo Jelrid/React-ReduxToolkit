@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilials } from './filialSlice';
+import { setActiveMenu } from './activeMenuSlice';
 import axios from 'axios';
 
 export function Home() {
     const dispatch = useDispatch();
     const filials = useSelector(state => state.filial);
+    const activeMenu = useSelector(state => state.activeMenu)
 
     useEffect(() => {
         async function fetchData() {
@@ -18,6 +20,13 @@ export function Home() {
         }
         fetchData();
     }, [dispatch]);
+
+const handleClick = (e) =>{
+    e.preventDefault();
+
+    const nameA = e.target.id;
+    dispatch(setActiveMenu(nameA));
+}
 
     return (
         <div className='flex'>
@@ -47,9 +56,9 @@ export function Home() {
                             Складской учет
                         </div>
                     </div>
-                    <div className='mt-10 grid '>
+                    <div className='mt-10 grid z-40'>
                         <label htmlFor="filial">Филиал: </label>
-                        <select id='filial' className='border-2 border-solid border-sky-950 rounded-md'>
+                        <select id='filial' className='border-2 border-solid border-sky-950 rounded-md cursor-pointer'>
                             <option>Выберите филиал</option>
                             {filials.map(filial => (
                                 <option key={filial.id} value={filial.id}>{filial.name}</option>
@@ -57,20 +66,19 @@ export function Home() {
                         </select>
                     </div>
                     <div>
-                    <img className='mt-[-16px] mb-[-10px] opacity-40'width='230' src='https://d2bzx2vuetkzse.cloudfront.net/fit-in/0x450/unshoppable_producs/1e88e851-f5b4-4a5d-9aef-25a29b2851d2.png' alt='notebook' />
+                    <img className='mt-[-10px] mb-[-10px] opacity-40 z-0'width='230' src='https://d2bzx2vuetkzse.cloudfront.net/fit-in/0x450/unshoppable_producs/1e88e851-f5b4-4a5d-9aef-25a29b2851d2.png' alt='line' />
                     </div>
-                    <div className='mt-10 grid grid-rows-9 mt-0 overflow-y-scroll color-blue-200'>
-                        <a href='...'>-компоненты</a>
-                        <a href='...'>-полуфабрикаты</a>
-                        <a href='...'>-товары</a>
-                        <a href='...'>-меню</a>
-                        <a href='...'>-перемещения</a>
-                        <a href='...'>-инвентаризация</a>
-                        <a href='...'>-выпуск товара</a>
-                        <a href='...'>-списание</a>
-                        <a href='...'>-накладные</a>
+                    <div className='mt-0 grid grid-rows-9 mt-0 overflow-y-scroll color-blue-200'>
+                        <a href='/' id='component' onClick={handleClick} className={`${activeMenu === 'component' ? 'shadow-lg p-1' : ''}`}>-компоненты</a>
+                        <a href='/' id='fabric' onClick={handleClick} className={`${activeMenu === 'fabric' ? 'shadow-lg p-1' : ''}`}>-полуфабрикаты</a>
+                        <a href='/' id='product' onClick={handleClick} className={`${activeMenu === 'product' ? 'shadow-lg p-1' : ''}`}>-товары</a>
+                        <a href='/' id='menu' onClick={handleClick} className={`${activeMenu === 'menu' ? 'shadow-lg p-1' : ''}`}>-меню</a>
+                        <a href='/' id='travel' onClick={handleClick} className={`${activeMenu === 'travel' ? 'shadow-lg p-1' : ''}`}>-перемещения</a>
+                        <a href='/' id='invent' onClick={handleClick} className={`${activeMenu === 'invent' ? 'shadow-lg p-1' : ''}`}>-инвентаризация</a>
+                        <a href='/' id='createProduct' onClick={handleClick} className={`${activeMenu === 'createProduct' ? 'shadow-lg p-1' : ''}`}>-выпуск товара</a>
+                        <a href='/' id='minusMoney' onClick={handleClick} className={`${activeMenu === 'minusMoney' ? 'shadow-lg p-1' : ''}`}>-списание</a>
+                        <a href='/' id='plusMoney' onClick={handleClick} className={`${activeMenu === 'plusMoney' ? 'shadow-lg p-1' : ''}`}>-накладные</a>
                     </div>
-                    {/* Сделать эдементами (табами для возможности переключения без перезагрузок)*/}
                 </div>
             </div>
             Здесь будет меню
