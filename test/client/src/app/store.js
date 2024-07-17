@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import filialReducer from '../features/Home/filialSlice'
 import activeMenuReducer from '../features/Home/activeMenuSlice';
+import allDataReducer from '../features/Home/allDataSlice';
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     filial: filialReducer,
+    allData: allDataReducer,
     activeMenu: activeMenuReducer
   },
 });
