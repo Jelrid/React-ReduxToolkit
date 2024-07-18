@@ -16,9 +16,5 @@
     ```
 4. Перейти в браузере по адресу указаному в консоле (в данном случае: http://localhost:3000)
     ```console
-    You can now view test in the browser.
-  http://localhost:3000
-Note that the development build is not optimized.
-To create a production build, use npm run build. 
-webpack compiled successfully
+    You can now view test in the browser. http://localhost:3000 Note that the development build is not optimized. To create a production build, use npm run build. webpack compiled successfully
     ```
